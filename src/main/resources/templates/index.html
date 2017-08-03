@@ -8,13 +8,24 @@
 </head>
 <body>
 
-<nav th:include="navbar :: navbar"></nav>
+    <nav th:include="navbar :: navbar"></nav>
 
-<div class="container">
-    <h1>Welcome to the Record Store</h1>
-</div>
+    <main class="container">
+        <h1>Welcome to the Record Store</h1>
 
-<span th:include="includes :: js"></span>
+        <div class="row">
+            <h3>Album Inventory</h3>
+            <ul class="list-group col-md-4 list-unstyled" th:each="album : ${albums}">
+                <li><a th:href="${album.id}" class="list-group-item active" th:inline="text">
+                    [[${album.title}]] by [[${album.artist.name}]]
+                </a></li>
+                <li th:each="song : ${album.songs}" class="list-group-item" th:inline="text">[[${song.title}]]</li>
+            </ul>
+        </div>
+    </main>
+
+
+    <span th:include="includes :: js"></span>
 
 </body>
 </html>

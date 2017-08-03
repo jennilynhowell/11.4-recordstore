@@ -8,6 +8,7 @@ import com.jennilyn.repositories.ArtistRepository;
 import com.jennilyn.repositories.SongRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
@@ -23,10 +24,18 @@ public class HomeController {
     SongRepository songRepo;
 
     @RequestMapping("/")
-    public String index(){
-        Iterable<Artist> artists = artistRepo.findAll();
+    public String index(Model model){
         Iterable<Album> albums = albumRepo.findAll();
-        Iterable<Song> songs = songRepo.findAll();
+
+        model.addAttribute("albums", albums);
         return "index";
+    }
+
+    @RequestMapping("/addAlbum")
+    public String addAlbum(Model model){
+        Iterable<Artist> artists = artistRepo.findAll();
+
+        model.addAttribute("artists", artists);
+        return "addAlbum";
     }
 }
