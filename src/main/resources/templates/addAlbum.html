@@ -15,7 +15,7 @@
 
     <div class="row">
         <h3>Add an Album</h3>
-        <div class="col-md-6">
+        <div class="col-md-8">
 
             <form action="/addAlbum" method="post" class="form-group">
                 <div>
@@ -24,9 +24,8 @@
                 </div>
 
                 <div>
-                    <a href="/addArtist">Add artist</a>
-                    <label for="artist">Album Artist</label>
-                    <select name="artist" id="artist" class="form-control">
+                    <label for="artist-id">Album Artist</label>
+                    <select name="artist-id" id="artist-id" class="form-control">
                         <option value="">--------</option>
                         <option th:each="artist : ${artists}" th:value="${artist.id}" th:inline="text">[[${artist.name}]]</option>
                     </select>
@@ -39,23 +38,22 @@
 
                 <div>
                     <label for="genre">Release Date</label>
-                    <label for="releasedate">Update Release Date</label>
-                    <select class="form-control" name="releasedate" id="age">
+                    <select class="form-control" name="release-date" id="age">
                         <option value="0">Release Month</option>
-                        <option>January</option>
-                        <option>February</option>
-                        <option>March</option>
-                        <option>April</option>
-                        <option>May</option>
-                        <option>June</option>
-                        <option>July</option>
-                        <option>August</option>
-                        <option>September</option>
-                        <option>October</option>
-                        <option>November</option>
-                        <option>December</option>
+                        <option>January </option>
+                        <option>February </option>
+                        <option>March </option>
+                        <option>April </option>
+                        <option>May </option>
+                        <option>June </option>
+                        <option>July </option>
+                        <option>August </option>
+                        <option>September </option>
+                        <option>October </option>
+                        <option>November </option>
+                        <option>December </option>
                     </select>
-                    <input type="text" name="releasedate" class="form-control" id="releasedate" placeholder="Release Year"/>
+                    <input type="text" name="release-date" class="form-control" id="release-date" placeholder="Release Year"/>
                 </div>
 
                 <div>

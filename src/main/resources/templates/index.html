@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8"/>
     <link rel="stylesheet" th:href="@{/webjars/bootstrap/3.3.7-1/css/bootstrap.min.css}"/>
-    <title>Record Store</title>
+    <title>Bad Plaid Records</title>
     <span th:include="includes :: css"></span>
 </head>
 <body>
@@ -11,12 +11,12 @@
     <nav th:include="navbar :: navbar"></nav>
 
     <main class="container">
-        <h1>Welcome to the Record Store</h1>
+        <h1>So Hipster You'll Spin</h1>
 
         <div class="row">
-            <h3>Album Inventory</h3>
+            <h3>Vinyl Inventory</h3>
             <ul class="list-group col-md-4 list-unstyled" th:each="album : ${albums}">
-                <li><a th:href="${album.id}" class="list-group-item active" th:inline="text">
+                <li><a th:href="'/album/' + ${album.id}" class="list-group-item active" th:inline="text">
                     [[${album.title}]] by [[${album.artist.name}]]
                 </a></li>
                 <li th:each="song : ${album.songs}" class="list-group-item" th:inline="text">[[${song.title}]]</li>

@@ -25,6 +25,12 @@ public class Album {
 
     public Album() {}
 
+    public Album(String albumGenre, String releaseDate, String title) {
+        this.albumGenre = albumGenre;
+        this.releaseDate = releaseDate;
+        this.title = title;
+    }
+
     public long getId() {
         return id;
     }

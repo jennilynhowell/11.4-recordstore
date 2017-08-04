@@ -17,6 +17,10 @@ public class Artist {
 
     public Artist() {}
 
+    public Artist(String name) {
+        this.name = name;
+    }
+
     public long getId() {
         return id;
     }
