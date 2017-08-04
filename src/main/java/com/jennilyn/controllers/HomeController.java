@@ -87,6 +87,40 @@ public class HomeController {
         return "redirect:/album/" + id;
     }
 
+    @RequestMapping("/album/{albumId}/editAlbum")
+    public String editAlbum(@PathVariable("albumId") long id, Model model){
+
+        Album album = albumRepo.findOne(id);
+        Iterable<Artist> artists = artistRepo.findAll();
+        model.addAttribute("artists", artists);
+        model.addAttribute("album", album);
+        return "editAlbum";
+    }
+
+    @RequestMapping(value = "/album/{albumId}/editAlbum", method = RequestMethod.POST)
+    public String editAlbum(@PathVariable("albumId") long id,
+                            @RequestParam("title") String title,
+                            @RequestParam("artist-id") long artistId,
+                            @RequestParam("genre") String genre,
+                            @RequestParam("release-date") String release, Model model){
+        Artist artist = artistRepo.findOne(artistId);
+        Album album = albumRepo.findOne(id);
+        album.setArtist(artist);
+        album.setAlbumGenre(genre);
+        album.setReleaseDate(release);
+        album.setTitle(title);
+        albumRepo.save(album);
+
+        return "redirect:/album/" + id;
+    }
+
+    @RequestMapping(value = "/album/{albumId}/deleteAlbum", method = RequestMethod.POST)
+    public String deleteAlbum(@PathVariable("albumId") long id){
+        Album album = albumRepo.findOne(id);
+        albumRepo.delete(album);
+        return "redirect:/";
+    }
+
     @RequestMapping("/song/{songId}")
     public String editSong(@PathVariable("songId") long id, Model model){
         Song song = songRepo.findOne(id);

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/3.3.7-1/css/bootstrap.min.css}"/>
+    <title>Edit an Album</title>
+    <span th:include="includes :: css"></span>
+</head>
+<body>
+
+<nav th:include="navbar :: navbar"></nav>
+
+<main class="container">
+    <h1>Thanks for hanging out at the Record Store</h1>
+
+    <div class="row">
+        <h3>Album Details</h3>
+
+        <div class="col-md-10">
+            <div class="title-div">
+                <h3 class="italicize" th:inline="text">[[${album.title}]]</h3>
+            </div>
+
+            <ul class="list-group col-md-4 list-unstyled">
+                <li class="list-group-item active" th:inline="text">
+                    by [[${album.artist.name}]]</li>
+                <li class="list-group-item" th:inline="text">Released: [[${album.releaseDate}]]</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="row">
+        <h3>Edit this Album</h3>
+        <div class="col-md-8">
+
+            <form th:action="'/album/' + ${album.id} + '/editAlbum'" method="post" class="form-group">
+                <div>
+                    <label for="title">Album Title</label>
+                    <input class="form-control" type="text" id="title" name="title" th:value="${album.title}"/>
+                </div>
+
+                <div>
+                    <label for="artist-id">Please confirm/update Artist</label>
+                    <select name="artist-id" id="artist-id" class="form-control">
+                        <option value="">--------</option>
+                        <option th:each="artist : ${artists}" th:value="${artist.id}" th:inline="text">[[${artist.name}]]</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label for="genre">Album Genre</label>
+                    <input class="form-control" type="text" id="genre" name="genre" th:value="${album.albumGenre}"/>
+                </div>
+
+                <div>
+                    <label for="genre">Please confirm/update Release Date</label>
+                    <select class="form-control" name="release-date" id="age">
+                        <option value="0">Release Month</option>
+                        <option>January </option>
+                        <option>February </option>
+                        <option>March </option>
+                        <option>April </option>
+                        <option>May </option>
+                        <option>June </option>
+                        <option>July </option>
+                        <option>August </option>
+                        <option>September </option>
+                        <option>October </option>
+                        <option>November </option>
+                        <option>December </option>
+                    </select>
+                    <input type="text" name="release-date" class="form-control" id="release-date" placeholder="Release Year"/>
+                </div>
+
+                <div>
+                    <input class="form-control btn btn-primary" type="submit" value="Update Album"/>
+                </div>
+
+            </form>
+
+            <form th:action="'/album/' + ${album.id} + '/deleteAlbum/'" method="post">
+                <div>
+                    <input class="form-control btn btn-danger" type="submit" value="Delete Album"/>
+                </div>
+            </form>
+        </div>
+
+    </div>
+</main>
+
+
+<span th:include="includes :: js"></span>
+
+</body>
+</html>
