@@ -6,6 +6,7 @@ import com.jennilyn.models.Song;
 import com.jennilyn.repositories.AlbumRepository;
 import com.jennilyn.repositories.ArtistRepository;
 import com.jennilyn.repositories.SongRepository;
+import com.sun.org.apache.xpath.internal.operations.Mod;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,6 +14,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+
+import java.util.List;
 
 @Controller
 public class HomeController {
@@ -34,6 +37,7 @@ public class HomeController {
         return "index";
     }
 
+//    ------Album/Artist Controllers------
     @RequestMapping("/addAlbum")
     public String addAlbum(Model model){
         Iterable<Artist> artists = artistRepo.findAll();
@@ -121,6 +125,24 @@ public class HomeController {
         return "redirect:/";
     }
 
+    @RequestMapping(value = "/album/search", method = RequestMethod.POST)
+    public String searchAlbum(@RequestParam("searchAlbumName") String searchAlbumName, Model model) {
+        List<Album> albums = albumRepo.findByTitle(searchAlbumName);
+        model.addAttribute("albums", albums);
+        return "searchResults";
+    }
+
+    @RequestMapping(value = "/artist/search", method = RequestMethod.POST)
+    public String searchArtist(@RequestParam("searchArtistName") String searchArtistName, Model model) {
+        List<Artist> artists = artistRepo.findByName(searchArtistName);
+        model.addAttribute("artists", artists);
+        return "searchResultsArtist";
+    }
+
+
+
+
+//    ------Song Controllers------
     @RequestMapping("/song/{songId}")
     public String editSong(@PathVariable("songId") long id, Model model){
         Song song = songRepo.findOne(id);
