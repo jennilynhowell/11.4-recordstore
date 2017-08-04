@@ -87,4 +87,32 @@ public class HomeController {
         return "redirect:/album/" + id;
     }
 
+    @RequestMapping("/song/{songId}")
+    public String editSong(@PathVariable("songId") long id, Model model){
+        Song song = songRepo.findOne(id);
+        model.addAttribute(song);
+
+        return "editSong";
+    }
+
+    @RequestMapping(value = "/song/{songId}/editSong", method = RequestMethod.POST)
+    public String editSong(@PathVariable("songId") long id,
+                           @RequestParam("title") String title,
+                           Model model){
+        Song song = songRepo.findOne(id);
+        song.setTitle(title);
+        songRepo.save(song);
+
+        model.addAttribute(song);
+        return "redirect:/song/" + id;
+    }
+
+    @RequestMapping(value = "/song/{songId}/deleteSong", method = RequestMethod.POST)
+    public String deleteSong(@PathVariable("songId") long id){
+        Song song = songRepo.findOne(id);
+        long albumId = song.getAlbum().getId();
+        songRepo.delete(id);
+        return "redirect:/album/" + albumId;
+    }
+
 }
