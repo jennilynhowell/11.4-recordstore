@@ -1,0 +1,94 @@
+
+body {
+    /*Photo by Mr Cup / Fabien Barral on Unsplash*/
+    background-image: url("../img/mr-cup-fabien-barral-86068.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.italicize {
+    font-style: italic;
+}
+
+nav {
+    background-image: url("../img/plaid.jpg");
+    background-size: cover;
+    background-position: center;
+}
+
+.nav-level {
+    background-color: rgba(132, 132, 132, 0.4) ;
+}
+
+main.container {
+    padding: 0px 45px 50px 45px;
+    background-color: rgba(132, 132, 132, 0.4) ;
+}
+
+.list-group-item.active {
+    background-color: #3B4959;
+    border-color: #3B4959;
+    font-size: 16px;
+}
+
+.navbar-brand {
+    font-family: 'Fugaz One', cursive;
+    font-weight: lighter;
+    font-size: 26px;
+    color: #fff;
+}
+
+.navbar-nav>li>a {
+    color: #fff;
+}
+
+.navbar-nav>li>a:hover {
+    background-color: #898888;
+}
+
+h1, h3 {
+    font-family: 'Fugaz One', cursive;
+    color: #fff;
+}
+
+.list-group-item {
+    background-color: #eee;
+    padding-bottom: 24px;
+}
+
+label, .blue, .not-found p {
+    color: #3B4959;
+}
+
+.not-found p {
+    font-weight: 700;
+}
+
+.body-form, .title-div {
+    background-color: rgba(238, 238, 238, 0.9);
+    padding: 15px;
+}
+
+.form-btn {
+    width: 125px;
+    margin-top: 2%;
+}
+
+.edit-album-btn {
+    float: right;
+    width: 155px;
+    margin-top: -5%;
+}
+
+.edit-song-btn {
+    float: right;
+}
+
+.not-found {
+    margin-top: 10%;
+}
+
+.search-list {
+    margin-bottom: 20px;
+}

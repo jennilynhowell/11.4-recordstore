@@ -2,59 +2,56 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8"/>
-    <link rel="stylesheet" th:href="@{/webjars/bootstrap/3.3.7-1/css/bootstrap.min.css}"/>
     <title>Album Details</title>
     <span th:include="includes :: css"></span>
 </head>
 <body>
 
-<nav th:include="navbar :: navbar"></nav>
+    <nav th:include="navbar :: navbar"></nav>
 
-<main class="container">
-    <h1>Thanks for hanging out at the Record Store</h1>
+    <main class="container">
+        <h1>Thanks for hanging out at Bad Plaid</h1>
 
-    <div class="row">
-        <h3>Album Details</h3>
+        <div class="row">
+            <h3>Album Details</h3>
 
-        <div class="col-md-10">
-            <div class="title-div">
-                <h3 class="italicize" th:inline="text">[[${album.title}]]</h3>
-                <span class="edit-btn">
-                    <a th:href="'/album/' + ${album.id} + '/editAlbum'" class="btn btn-default" type="button">Edit Album Details</a>
-                </span>
+            <div class="row title-div">
+                <h3 class="italicize blue" th:inline="text">[[${album.title}]]</h3>
+                <p class="italicize" th:inline="text">Genre: [[${album.albumGenre}]]</p>
+
+                <div class="col-md-6">
+                    <ul class="list-group list-unstyled">
+                        <li class="list-group-item active" th:inline="text">
+                            [[${album.title}]] <br/>
+                            by [[${album.artist.name}]] <br/>
+                            <span class=""><a th:href="'/album/' + ${album.id} + '/editAlbum'" class="edit-album-btn btn btn-default" type="button">Edit Album Details</a></span>
+                        </li>
+                        <li th:each="song : ${album.songs}" class="list-group-item" th:inline="text">[[${song.title}]]
+                            <span class="edit-btn"><a th:href="'/song/' + ${song.id}" class="edit-song-btn btn btn-default" type="button">Edit</a></span>
+                        </li>
+                        <li class="list-group-item italicize" th:inline="text">Released: [[${album.releaseDate}]]</li>
+                    </ul>
+                </div>
+
+                <div class="col-md-6">
+
+                    <h3 class="blue" th:inline="text">Add a song to [[${album.title}]]</h3>
+
+                    <form th:action="'/album/' + ${album.id} + '/addSong'" method="post" class="form-group">
+                        <div>
+                            <label for="title">Song Title</label>
+                            <input class="form-control" type="text" id="title" name="title" placeholder="Song Title"/>
+                        </div>
+
+                        <div>
+                            <input class="form-btn form-control btn btn-primary" type="submit" value="Add Song"/>
+                        </div>
+
+                    </form>
+                </div>
             </div>
-
-            <ul class="list-group col-md-4 list-unstyled">
-                <li class="list-group-item active" th:inline="text">
-                    by [[${album.artist.name}]]</li>
-                <li th:each="song : ${album.songs}" class="list-group-item" th:inline="text">[[${song.title}]]
-                    <span class="edit-btn">
-                        <a th:href="'/song/' + ${song.id}" class="btn btn-default" type="button">Edit</a>
-                    </span>
-                </li>
-                <li th:inline="text">Released: [[${album.releaseDate}]]</li>
-            </ul>
         </div>
-
-        <div class="col-md-6">
-
-            <h3 th:inline="text">Add a song to [[${album.title}]]</h3>
-
-            <form th:action="'/album/' + ${album.id} + '/addSong'" method="post" class="form-group">
-                <div>
-                    <label for="title">Song Title</label>
-                    <input class="form-control" type="text" id="title" name="title" placeholder="Song Title"/>
-                </div>
-
-                <div>
-                    <input class="form-control btn btn-primary" type="submit" value="Add Song"/>
-                </div>
-
-            </form>
-        </div>
-
-    </div>
-</main>
+    </main>
 
 
 <span th:include="includes :: js"></span>

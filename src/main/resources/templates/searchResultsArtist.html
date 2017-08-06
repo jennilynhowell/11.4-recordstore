@@ -2,7 +2,6 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8"/>
-    <link rel="stylesheet" th:href="@{/webjars/bootstrap/3.3.7-1/css/bootstrap.min.css}"/>
     <title>Bad Plaid Records</title>
     <span th:include="includes :: css"></span>
 </head>
@@ -10,16 +9,16 @@
 
 <nav th:include="navbar :: navbar"></nav>
 
-    <main class="container">
+    <main class="container row">
         <h1>Search Results</h1>
 
-        <div class="row col-md-6">
+        <div class="col-md-6" th:each="artist : ${artists}">
+            <h3 th:inline="text">[[${artist.name}]]</h3>
             <ul class="list-group list-unstyled" th:each="artist : ${artists}">
-                <li class="list-group-item active" th:inline="text">[[${artist.name}]]</li>
-                <li th:each="album : ${artist.albums}">
-                    <a th:href="'/album/' + ${album.id}" class="list-group-item" th:inline="text">[[${album.title}]]</a>
+                <li class="search-list" th:each="album : ${artist.albums}">
+                    <a th:href="'/album/' + ${album.id}" class="list-group-item active" th:inline="text">[[${album.title}]]</a>
                     <ul class="list-unstyled">
-                        <li th:each="song : ${album.songs}" class="" th:inline="text">[[${song.title}]]</li>
+                        <li th:each="song : ${album.songs}" class="list-group-item" th:inline="text">[[${song.title}]]</li>
                     </ul>
                 </li>
             </ul>

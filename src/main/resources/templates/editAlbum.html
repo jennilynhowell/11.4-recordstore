@@ -2,7 +2,6 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8"/>
-    <link rel="stylesheet" th:href="@{/webjars/bootstrap/3.3.7-1/css/bootstrap.min.css}"/>
     <title>Edit an Album</title>
     <span th:include="includes :: css"></span>
 </head>
@@ -11,21 +10,21 @@
 <nav th:include="navbar :: navbar"></nav>
 
 <main class="container">
-    <h1>Thanks for hanging out at the Record Store</h1>
+    <h1>Thanks for hanging out at Bad Plaid</h1>
 
     <div class="row">
         <h3>Album Details</h3>
 
         <div class="col-md-10">
             <div class="title-div">
-                <h3 class="italicize" th:inline="text">[[${album.title}]]</h3>
+                <h3 class="italicize blue" th:inline="text">[[${album.title}]]</h3>
+                <ul class="col-md-5 list-unstyled">
+                    <li class="" th:inline="text">
+                        by [[${album.artist.name}]]</li>
+                    <li class="italicize" th:inline="text">Released: [[${album.releaseDate}]]</li>
+                </ul>
             </div>
 
-            <ul class="list-group col-md-4 list-unstyled">
-                <li class="list-group-item active" th:inline="text">
-                    by [[${album.artist.name}]]</li>
-                <li class="list-group-item" th:inline="text">Released: [[${album.releaseDate}]]</li>
-            </ul>
         </div>
     </div>
 
@@ -33,7 +32,7 @@
         <h3>Edit this Album</h3>
         <div class="col-md-8">
 
-            <form th:action="'/album/' + ${album.id} + '/editAlbum'" method="post" class="form-group">
+            <form th:action="'/album/' + ${album.id} + '/editAlbum'" method="post" class="body-form form-group">
                 <div>
                     <label for="title">Album Title</label>
                     <input class="form-control" type="text" id="title" name="title" th:value="${album.title}"/>
@@ -73,7 +72,7 @@
                 </div>
 
                 <div>
-                    <input class="form-control btn btn-primary" type="submit" value="Update Album"/>
+                    <input class="form-btn form-control btn btn-primary" type="submit" value="Update Album"/>
                 </div>
 
             </form>

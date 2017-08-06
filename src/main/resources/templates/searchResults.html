@@ -2,7 +2,6 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8"/>
-    <link rel="stylesheet" th:href="@{/webjars/bootstrap/3.3.7-1/css/bootstrap.min.css}"/>
     <title>Bad Plaid Records</title>
     <span th:include="includes :: css"></span>
 </head>
@@ -10,12 +9,12 @@
 
 <nav th:include="navbar :: navbar"></nav>
 
-    <main class="container">
+    <main class="container row">
         <h1>Search Results</h1>
 
-        <div class="row">
-            <ul class="list-group col-md-4 list-unstyled" th:each="album : ${albums}">
-                <li><a th:href="'/album/' + ${album.id}" class="list-group-item active" th:inline="text">
+        <div class="col-md-6" th:each="album : ${albums}">
+            <ul class="list-group col-md-4 list-unstyled" >
+                <li><a th:class="search-list" th:href="'/album/' + ${album.id}" class="list-group-item active" th:inline="text">
                     [[${album.title}]] by [[${album.artist.name}]]
                 </a></li>
                 <li th:each="song : ${album.songs}" class="list-group-item" th:inline="text">[[${song.title}]]</li>

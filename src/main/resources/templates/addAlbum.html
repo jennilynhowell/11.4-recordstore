@@ -2,7 +2,6 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8"/>
-    <link rel="stylesheet" th:href="@{/webjars/bootstrap/3.3.7-1/css/bootstrap.min.css}"/>
     <title>Add an Album</title>
     <span th:include="includes :: css"></span>
 </head>
@@ -11,13 +10,13 @@
 <nav th:include="navbar :: navbar"></nav>
 
 <main class="container">
-    <h1>Thanks for hanging out at the Record Store</h1>
+    <h1>Thanks for hanging out at Bad Plaid</h1>
 
     <div class="row">
         <h3>Add an Album</h3>
-        <div class="col-md-8">
+        <div class="col-md-6">
 
-            <form action="/addAlbum" method="post" class="form-group">
+            <form action="/addAlbum" method="post" class="body-form form-group">
                 <div>
                     <label for="title">Album Title</label>
                     <input class="form-control" type="text" id="title" name="title" placeholder="Title"/>
@@ -57,13 +56,13 @@
                 </div>
 
                 <div>
-                    <input class="form-control btn btn-primary" type="submit" value="Add Album"/>
+                    <input class="form-btn form-control btn btn-primary" type="submit" value="Add Album"/>
                 </div>
 
             </form>
         </div>
 
-        <div class="col-md-6">
+        <div class="col-md-6 body-form not-found">
             <p>Artist not found?</p>
             <form action="/addArtist" method="post" class="form-group form-inline">
                 <input type="text" name="addArtist" class="form-control" placeholder="Add Artist's Name"/>
